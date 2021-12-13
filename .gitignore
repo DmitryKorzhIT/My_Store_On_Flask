@@ -1,3 +1,5 @@
 .idea
 .swp
 .obsidian/
+venv
+test_app.py
