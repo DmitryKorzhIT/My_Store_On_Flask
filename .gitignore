@@ -1,5 +1,6 @@
-.idea
-.swp
+*.idea
+*.swp
 .obsidian/
 venv
 test_app.py
+__pycache__
