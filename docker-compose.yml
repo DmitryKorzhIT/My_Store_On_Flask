@@ -1,0 +1,19 @@
+version: '3'
+services:
+ db:
+  image: postgres:14-alpine
+  volumes:
+   - ./data/db:/var/lib/postgresql/data
+  environment:
+   POSTGRES_PASSWORD: 1
+   POSTGRES_DB: articles
+  restart: always
+ app:
+  build: .
+  command: python app.py runserver 0.0.0.0:5000
+  volumes:
+   - .:/code
+  ports:
+   - "7000:5432"
+  depends_on:
+   - "db"

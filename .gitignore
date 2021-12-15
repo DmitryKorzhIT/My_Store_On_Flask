@@ -5,3 +5,4 @@ venv
 test_app.py
 __pycache__
 Pipfile
+data
