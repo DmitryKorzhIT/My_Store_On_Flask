@@ -1,16 +1,28 @@
-version: '3'
+version: '2.1'
 services:
+
+
  db:
   image: postgres:14-alpine
   volumes:
    - ./data/db:/var/lib/postgresql/data
   environment:
+   POSTGRES_USER: postgres
    POSTGRES_PASSWORD: 1
    POSTGRES_DB: articles
+  healthcheck:
+   test: ["CMD-SHELL", "pg_isready"]
+   interval: 10s
+   timeout: 5s
+   retries: 10
   restart: always
+
+
+
  app:
   depends_on:
-   - db
+   db:
+    condition: service_healthy
   command: >
    /bin/bash -c "sleep 15"
   build: .
